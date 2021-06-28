@@ -1,9 +1,8 @@
 package com.graph;
 
-public class Main {
-
+public class BFS {
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
 
         Graph graph = new Graph();
         graph.addVertex('A');
@@ -21,6 +20,6 @@ public class Main {
         graph.addEdge(1,4);
 
         System.out.println("Visits: ");
-        graph.dfs();
+        graph.bfs();
     }
 }

@@ -1,5 +1,6 @@
 package com.graph;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 class Vertex{
@@ -19,12 +20,14 @@ public class Graph {
     private int[][] adjMat;
     private int nVerts;
     private Stack<Integer> a;
+    private LinkedList<Integer> q;
 
     public Graph(){
         vertexList = new Vertex[MAX_VERTS];
         adjMat = new int[MAX_VERTS][MAX_VERTS];
         nVerts = 0;
         a = new Stack<Integer>();
+        q = new LinkedList<>();
     }
 
     public void addVertex(char label){
@@ -63,6 +66,23 @@ public class Graph {
                 vertexList[v].wasVisited = true;
                 displayVertex(v);
                 a.push(v);
+            }
+        }
+
+    }
+
+    public void bfs(){
+        vertexList[0].wasVisited = true;
+        displayVertex(0);
+        q.add(0);
+        int v2;
+
+        while(!q.isEmpty()){
+            int v1 = q.remove();
+            while((v2=getAdjUnvisitedVertex(v1)) != -1){
+                vertexList[v2].wasVisited = true;
+                displayVertex(v2);
+                q.add(v2);
             }
         }
 
